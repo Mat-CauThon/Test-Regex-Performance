@@ -9,27 +9,6 @@
 import Foundation
 
 
-var countriesJSON: [Country] = []
-let timeNano3 = CFAbsoluteTimeGetCurrent()
-
-let path2 = "countryJSON.txt"
-let url = URL(fileURLWithPath: path2)
-do {
-    let data = try Data(contentsOf: url)
-    let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-    let array = json as! [Any]
-    for country in array {
-        let countryDict = country as! [String: Any]
-        let country = Country(name: countryDict["country"] as! String, region: countryDict["region"] as! String, url: countryDict["flag_url"] as! String)
-        countriesJSON.append(country)
-    }
-    
-} catch {
-    print("Ooops! Something went wrong: \(error)")
-}
-
-let timeNano4 = CFAbsoluteTimeGetCurrent()
-print("Сколько прошло времени: \(timeNano4 - timeNano3)")
 
 
 
@@ -73,7 +52,27 @@ let timeNano2 = CFAbsoluteTimeGetCurrent()
 print("Сколько прошло времени: \(timeNano2 - timeNano1)")
 
 
+var countriesJSON: [Country] = []
+let timeNano3 = CFAbsoluteTimeGetCurrent()
 
+let path2 = "countryJSON.txt"
+let url = URL(fileURLWithPath: path2)
+do {
+    let data = try Data(contentsOf: url)
+    let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+    let array = json as! [Any]
+    for country in array {
+        let countryDict = country as! [String: Any]
+        let country = Country(name: countryDict["country"] as! String, region: countryDict["region"] as! String, url: countryDict["flag_url"] as! String)
+        countriesJSON.append(country)
+    }
+    
+} catch {
+    print("Ooops! Something went wrong: \(error)")
+}
+
+let timeNano4 = CFAbsoluteTimeGetCurrent()
+print("Сколько прошло времени для JSON: \(timeNano4 - timeNano3)")
 
 
 
