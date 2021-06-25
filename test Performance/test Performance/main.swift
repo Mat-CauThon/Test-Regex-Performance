@@ -8,10 +8,6 @@
 
 import Foundation
 
-
-
-
-
 var countries: [Country] = []
 
 let timeNano1 = CFAbsoluteTimeGetCurrent()
